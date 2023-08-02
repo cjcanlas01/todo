@@ -32,7 +32,7 @@ const removeTodo = (idx) => {
     <div class="grid grid-cols-12 gap-x-3">
       <div class="col-span-8">
         <div class="flex flex-col">
-          <label for="todoInput" clasS="text-white mb-2">TODO</label>
+          <label for="todoInput" clasS="text-white mb-2 font-bold">TODO</label>
           <input 
             id="todoInput"
             type="text"
