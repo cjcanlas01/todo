@@ -29,6 +29,7 @@ const removeTodo = (idx) => {
 
 <template>
   <main class="flex flex-col justify-center w-[400px] text-lg">
+    <img src="@/assets/logo.jpg" alt="logo" class="mb-4 border border-white">
     <div class="grid grid-cols-12 gap-x-3">
       <div class="col-span-8">
         <div class="flex flex-col">
