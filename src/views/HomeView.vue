@@ -50,7 +50,7 @@ const removeTodo = (idx) => {
       </div>
     </div>
     <!-- todo container -->
-    <div class="mt-2 border border-white rounded-md text-white p-2 max-h-[500px] overflow-auto">
+    <div class="mt-2 border border-white rounded-md text-white p-2 max-h-[350px] overflow-auto">
       <template
         v-if="todos.length"
       >
