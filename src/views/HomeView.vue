@@ -28,12 +28,12 @@ const removeTodo = (idx) => {
 </script>
 
 <template>
-  <main class="flex flex-col justify-center w-[400px] text-lg">
-    <img src="@/assets/logo.jpg" alt="logo" class="mb-4 border border-white">
+  <main class="flex flex-col justify-center w-[500px] text-lg">
+    <img src="@/assets/logo.jpg" alt="logo" class="mb-10 border border-white">
     <div class="grid grid-cols-12 gap-x-3">
       <div class="col-span-8">
         <div class="flex flex-col">
-          <label for="todoInput" clasS="text-white mb-2 font-bold">TODO</label>
+          <label for="todoInput" clasS="text-white mb-3 font-bold text-3xl">TODO</label>
           <input 
             id="todoInput"
             type="text"
