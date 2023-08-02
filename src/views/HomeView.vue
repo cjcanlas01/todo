@@ -28,7 +28,7 @@ const removeTodo = (idx) => {
 </script>
 
 <template>
-  <main class="flex flex-col justify-center w-[500px] text-lg">
+  <main class="flex flex-col justify-center w-[500px] text-lg max-w-[90vw]">
     <img src="@/assets/logo.jpg" alt="logo" class="mb-10 border border-white">
     <div class="grid grid-cols-12 gap-x-3">
       <div class="col-span-8">
