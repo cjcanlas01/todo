@@ -1,16 +1,23 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 
 const todoInput = ref('')
 const todos = ref([])
+const editInputRefs = ref([])
+
+const isInputEmpty = (inputField) => {
+  if (!inputField) {
+    alert('Please enter a todo!')
+    return true
+  }
+  return false
+}
 
 const addTodo = () => {
-  if (!todoInput.value) {
-    alert('Please enter a todo!')
-    todoInput.value = ''
-    return
-  }
+  if (isInputEmpty(todoInput.value)) return
+
   todos.value.push({
+    isEdit: false,
     id: todos.value.length + 1,
     description: todoInput.value,
     timestamp: new Date().toLocaleString()
@@ -20,8 +27,19 @@ const addTodo = () => {
 
 const removeTodo = (idx) => {
   todos.value.find((todo, index) => {
-    if (todo.id === idx) {
+    if (todo && (todo.id === idx)) {
       todos.value.splice(index, 1)
+    }
+  })
+}
+
+const showEditTodo = (idx) => {
+  if (isInputEmpty(todos.value[idx].description)) return
+
+  todos.value[idx].isEdit = !todos.value[idx].isEdit
+  nextTick(() => {
+    if (todos.value[idx].isEdit) {
+      editInputRefs.value[idx].focus()
     }
   })
 }
@@ -56,16 +74,25 @@ const removeTodo = (idx) => {
       >
         <div class="p-2 border-b-2 border-white flex flex-col items-start" v-for="(todo, idx) in todos" :key="idx">
             <div class="mb-2 text-sm flex flex-row w-full">
-              <div class="flex-grow">
-                Todo #{{ todo.id }}
+              <div class="flex-grow font-extrabold">
+                TODO #{{ todo.id }}
               </div>
               <div class="text-white font-bold text-xl cursor-pointer" @click="removeTodo(todo.id)">&times;</div>
             </div>
-            <div class="break-all mb-3">
+            <div v-if="!todo.isEdit" class="break-all mb-3 w-full cursor-pointer" @click="showEditTodo(idx)">
               {{ todo.description }}
             
             </div>
-            <div class="text-xs self-end">{{ todo.timestamp }}</div>
+            <div v-if="todo.isEdit" class="break-all mb-3 w-full">
+              <input 
+                type="text"
+                v-model="todo.description"
+                placeholder="Enter your todo here"
+                class="h-[40px] text-black px-2 w-full"
+                ref="editInputRefs"
+                @keyup.enter="showEditTodo(idx)">
+            </div>
+            <div class="text-xs font-bold tracking-widest self-end">{{ todo.timestamp }}</div>
         </div>
       </template>
       <div v-else class="text-center">Nothing to display.</div>
