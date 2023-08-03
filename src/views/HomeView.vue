@@ -83,7 +83,7 @@ const showEditTodo = (idx) => {
               {{ todo.description }}
             
             </div>
-            <div v-show="todo.isEdit" class="break-all mb-3 w-full">
+            <div v-show="todo.isEdit" class="break-all mb-3 w-full flex flex-col">
               <input 
                 type="text"
                 v-model="todo.description"
@@ -91,6 +91,7 @@ const showEditTodo = (idx) => {
                 class="h-[40px] text-black px-2 w-full"
                 ref="editInputRefs"
                 @keyup.enter="showEditTodo(idx)">
+                <div class="italic text-xs">Press enter to update</div>
             </div>
             <div class="text-xs font-bold tracking-widest self-end">{{ todo.timestamp }}</div>
         </div>
