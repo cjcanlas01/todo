@@ -18,7 +18,7 @@ const addTodo = () => {
 
   todos.value.push({
     isEdit: false,
-    id: todos.value.length + 1,
+    id: todos.value.length ? todos.value[todos.value.length - 1].id + 1 : 1,
     description: todoInput.value,
     timestamp: new Date().toLocaleString()
   })
@@ -79,11 +79,11 @@ const showEditTodo = (idx) => {
               </div>
               <div class="text-white font-bold text-xl cursor-pointer" @click="removeTodo(todo.id)">&times;</div>
             </div>
-            <div v-if="!todo.isEdit" class="break-all mb-3 w-full cursor-pointer" @click="showEditTodo(idx)">
+            <div v-show="!todo.isEdit" class="break-all mb-3 w-full cursor-pointer" @click="showEditTodo(idx)">
               {{ todo.description }}
             
             </div>
-            <div v-if="todo.isEdit" class="break-all mb-3 w-full">
+            <div v-show="todo.isEdit" class="break-all mb-3 w-full">
               <input 
                 type="text"
                 v-model="todo.description"
